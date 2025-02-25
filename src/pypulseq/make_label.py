@@ -1,6 +1,8 @@
 from types import SimpleNamespace
 from typing import Union
 
+import numpy as np
+
 from pypulseq.supported_labels_rf_use import get_supported_labels
 
 
@@ -39,7 +41,7 @@ def make_label(label: str, type: str, value: Union[bool, float, int]) -> SimpleN
         )
     if type not in ['SET', 'INC']:
         raise ValueError("Invalid type. Must be one of 'SET' or 'INC'.")
-    if not isinstance(value, (bool, float, int)):
+    if not isinstance(value, (bool, float, int, np.integer)):
         raise ValueError('Must supply a valid numerical or logical value.')
 
     out = SimpleNamespace()
